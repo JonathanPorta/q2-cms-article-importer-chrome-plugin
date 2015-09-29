@@ -1,0 +1,42 @@
+{
+  "name": "Fix KTVQ CMS",
+  "description": "Makes KTVQ Interface less hard to use.",
+  "version": "1.0",
+  "permissions": [
+    "activeTab", "notifications", "http://dev.rurd4me.com:1337/*"
+  ],
+  "manifest_version": 2,
+  "background": {
+    "scripts": ["jquery.js", "background.js"],
+	"persistent": false
+  },
+  "browser_action": {
+    "default_popup": "popup.htm",
+	"scripts" : "popup.js"
+  },
+	"commands": {
+		"toggle-feature": {
+			"suggested_key": { "default": "Ctrl+Shift+1" },
+			"description": "Send a 'toggle-feature' event to the extension"
+		},
+//		"copy-intercept": {
+//			"suggested_key": { "default": "Ctrl+C" },
+//			"description": "Intercept Copy"
+//		},
+		"toggle-feature-two": {
+			"suggested_key": { "default": "Ctrl+Shift+2" },
+			"description": "Send a 'toggle-feature' event to the extension"
+		},
+		"toggle-feature-three": {
+			"suggested_key": { "default": "Ctrl+Shift+3" },
+			"description": "Send a 'toggle-feature' event to the extension"
+		}
+	},
+	"content_scripts": [
+		{
+			"matches": ["<all_urls>"],
+			"all_frames": true,
+			"js": ["jquery.js", "fix_links.js", "news_form.js", "inserter.js"]
+		}
+	]
+}
